@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Click Counter</title>
+  </head>
+  <body>
+    <h1>Click Counter</h1>
+    <div>
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name">
+      <button onclick="startCount()">Start Counting</button>
+    </div>
+    <div id="counter" style="display:none;">
+      <p>Click the space bar to count clicks:</p>
+      <p><strong>Player:</strong> <span id="player-name"></span></p>
+      <p><strong>Clicks:</strong> <span id="clicks">0</span></p>
+    </div>
+    <script>
+      function startCount() {
+        var playerName = document.getElementById("name").value;
+        if(playerName === "") {
+          alert("Please enter a name!");
+        } else {
+          document.getElementById("name").style.display = "none";
+          document.getElementsByTagName("button")[0].style.display = "none";
+          document.getElementById("player-name").innerHTML = playerName;
+          document.getElementById("counter").style.display = "block";
+          var count = 0;
+          document.body.onkeyup = function(e){
+            if(e.keyCode === 32){
+              count++;
+              document.getElementById("clicks").innerHTML = count;
+            }
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
